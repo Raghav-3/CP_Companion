@@ -1,52 +1,63 @@
-# ⚡ CP Companion — Competitive Programming Hub
+# CP Companion
 
-A complete competitive programming dashboard built with pure HTML, CSS, and JavaScript.
+CP Companion is a web application built to help competitive programmers keep track of contests, coding profiles, and daily practice from a single dashboard. It combines contest tracking, profile statistics, planning tools, and problem recommendations into one interface.
+
+## Live Demo
+
+Add GitHub Pages link here after deployment.
 
 ## Features
 
-| Feature | Description |
-|---|---|
-| 🏠 Dashboard | Overview with clock, stats, next contest countdown, goals & daily challenge |
-| 🏆 Contests | Live countdowns for Codeforces, LeetCode, AtCoder, CodeChef. Filter by platform |
-| 👤 Codeforces | Fetch real profile data — rating, rank, max rating, contribution + rating history chart |
-| 🧩 LeetCode | Fetch real stats — Easy/Medium/Hard solved, contest rating, global rank |
-| 📋 Daily Planner | Task manager with categories, progress bar, LocalStorage persistence |
-| ⭐ Bookmarks | Star contests for quick access. Countdown timers included |
-| 📝 Notes | Per-contest or general notes. Auto-save. Full editor |
-| 🎯 Daily Challenge | Random problem from curated 20-problem bank. Filter by difficulty |
-| 🌙 Dark/Light Mode | Toggle anytime — preference saved |
-| 📱 Responsive | Works on mobile, tablet, and desktop |
+* View upcoming programming contests with live countdown timers.
+* Bookmark contests for quick access.
+* Fetch and display Codeforces profile information and rating history.
+* View LeetCode statistics.
+* Create daily practice goals using a built-in planner.
+* Maintain notes for contest preparation and problem-solving.
+* Generate random practice problems by difficulty.
+* Store planner data, notes, bookmarks, and preferences using Local Storage.
+* Responsive interface with light and dark themes.
 
-## APIs Used
+## Technologies Used
 
-- **Codeforces API** — `https://codeforces.com/api/user.info` + `user.rating`
-- **LeetCode** — Community stats API
-- **Contests** — Realistically seeded mock data (easily swappable with clist.by API)
+* HTML
+* CSS
+* JavaScript
+* Codeforces API
+* Chart.js
+* Local Storage
 
-## How to Run
+## Project Structure
 
-Just open `index.html` in any modern browser. No build step, no npm install.
-
-```bash
-# Option 1: Direct open
-open index.html
-
-# Option 2: Local server (avoids CORS on some browsers)
-python3 -m http.server 8080
-# then visit http://localhost:8080
+```text
+CP_Companion/
+│── index.html
+│── style.css
+│── script.js
+└── README.md
 ```
 
-## Tech Stack
+## Running the Project
 
-- **HTML5** — Semantic structure
-- **CSS3** — CSS Variables, Grid, Flexbox, Animations
-- **Vanilla JavaScript** — All features, no frameworks
-- **Chart.js** — Rating history chart (CDN)
-- **Google Fonts** — Inter + JetBrains Mono
+Clone the repository
 
-## Design
+```bash
+git clone https://github.com/Raghav-3/CP_Companion.git
+```
 
-- Dark terminal aesthetic with electric violet + neon cyan palette
-- Glass-morphism cards with gradient accents  
-- JetBrains Mono for all data/numbers (developer feel)
-- Smooth transitions and hover micro-interactions
+Open `index.html` in your browser.
+
+No additional setup is required.
+
+## Future Improvements
+
+* Support for more competitive programming platforms.
+* Contest reminders using browser notifications.
+* Cloud synchronization for planner and notes.
+* Better analytics and performance tracking.
+
+## Author
+
+Raghav Bansal
+
+GitHub: https://github.com/Raghav-3
