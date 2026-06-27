@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CP Companion — Competitive Programming Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">CP Companion</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-page="dashboard">
+        <span class="nav-icon">🏠</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-page="contests">
+        <span class="nav-icon">🏆</span>
+        <span>Contests</span>
+      </a>
+      <a href="#" class="nav-item" data-page="codeforces">
+        <span class="nav-icon">👤</span>
+        <span>Codeforces</span>
+      </a>
+      <a href="#" class="nav-item" data-page="leetcode">
+        <span class="nav-icon">🧩</span>
+        <span>LeetCode</span>
+      </a>
+      <a href="#" class="nav-item" data-page="planner">
+        <span class="nav-icon">📋</span>
+        <span>Daily Planner</span>
+      </a>
+      <a href="#" class="nav-item" data-page="bookmarks">
+        <span class="nav-icon">⭐</span>
+        <span>Bookmarks</span>
+      </a>
+      <a href="#" class="nav-item" data-page="notes">
+        <span class="nav-icon">📝</span>
+        <span>Notes</span>
+      </a>
+      <a href="#" class="nav-item" data-page="challenge">
+        <span class="nav-icon">🎯</span>
+        <span>Daily Challenge</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="theme-toggle" id="themeToggle">
+        <span id="themeIcon">☀️</span>
+        <span id="themeText">Light Mode</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Mobile header -->
+  <header class="mobile-header">
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <span class="mobile-logo">⚡ CP Companion</span>
+    <button class="theme-toggle-mobile" id="themeToggleMobile">🌙</button>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- DASHBOARD PAGE -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div>
+          <h1 class="greeting" id="greeting">Hello, Coder 👋</h1>
+          <p class="subtitle">Track your competitive programming journey</p>
+        </div>
+        <div class="header-right">
+          <div class="current-time" id="currentTime">--:--:--</div>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-info">
+            <div class="stat-value" id="upcomingCount">--</div>
+            <div class="stat-label">Upcoming Contests</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-info">
+            <div class="stat-value" id="solvedToday">0</div>
+            <div class="stat-label">Problems Planned Today</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-info">
+            <div class="stat-value" id="bookmarkCount">0</div>
+            <div class="stat-label">Bookmarked Contests</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📝</div>
+          <div class="stat-info">
+            <div class="stat-value" id="notesCount">0</div>
+            <div class="stat-label">Notes Saved</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two Column Layout -->
+      <div class="dashboard-grid">
+        <!-- Upcoming Contests Preview -->
+        <div class="card">
+          <div class="card-header">
+            <h2>🔥 Next Contest</h2>
+            <a href="#" class="card-link" data-page="contests">View All →</a>
+          </div>
+          <div id="dashNextContest">
+            <div class="loading-pulse">Loading contests...</div>
+          </div>
+        </div>
+
+        <!-- Today's Goals -->
+        <div class="card">
+          <div class="card-header">
+            <h2>📋 Today's Goals</h2>
+            <a href="#" class="card-link" data-page="planner">Open Planner →</a>
+          </div>
+          <div id="dashGoals">
+            <div class="loading-pulse">Loading goals...</div>
+          </div>
+        </div>
+
+        <!-- Daily Challenge -->
+        <div class="card">
+          <div class="card-header">
+            <h2>🎯 Daily Challenge</h2>
+            <a href="#" class="card-link" data-page="challenge">Full View →</a>
+          </div>
+          <div id="dashChallenge">
+            <div class="loading-pulse">Loading challenge...</div>
+          </div>
+        </div>
+
+        <!-- Quick Profile -->
+        <div class="card">
+          <div class="card-header">
+            <h2>👤 Quick Stats</h2>
+          </div>
+          <div id="dashProfile">
+            <div class="quick-profile-empty">
+              <p>Set up your profiles to see stats here</p>
+              <div class="quick-profile-btns">
+                <a href="#" class="btn-small" data-page="codeforces">Codeforces</a>
+                <a href="#" class="btn-small" data-page="leetcode">LeetCode</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTESTS PAGE -->
+    <div class="page" id="page-contests">
+      <div class="page-header">
+        <div>
+          <h1>🏆 Upcoming Contests</h1>
+          <p class="subtitle">Stay ahead — never miss a contest</p>
+        </div>
+        <button class="btn-primary" id="refreshContests">🔄 Refresh</button>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="codeforces">Codeforces</button>
+        <button class="filter-btn" data-filter="leetcode">LeetCode</button>
+        <button class="filter-btn" data-filter="atcoder">AtCoder</button>
+        <button class="filter-btn" data-filter="codechef">CodeChef</button>
+      </div>
+
+      <div class="contests-grid" id="contestsGrid">
+        <div class="loading-pulse">Fetching contests...</div>
+      </div>
+    </div>
+
+    <!-- CODEFORCES PAGE -->
+    <div class="page" id="page-codeforces">
+      <div class="page-header">
+        <div>
+          <h1>👤 Codeforces Profile</h1>
+          <p class="subtitle">Your rating, rank & performance</p>
+        </div>
+      </div>
+
+      <div class="profile-search card">
+        <div class="search-row">
+          <input type="text" id="cfHandle" placeholder="Enter Codeforces handle (e.g. tourist)" class="search-input" />
+          <button class="btn-primary" id="fetchCF">Fetch Profile</button>
+        </div>
+      </div>
+
+      <div id="cfProfile" class="hidden">
+        <div class="profile-hero card">
+          <div class="profile-avatar" id="cfAvatar">?</div>
+          <div class="profile-info">
+            <h2 id="cfName">—</h2>
+            <div class="rank-badge" id="cfRankBadge">—</div>
+          </div>
+          <div class="profile-stats">
+            <div class="pstat">
+              <div class="pstat-val" id="cfRating">—</div>
+              <div class="pstat-label">Rating</div>
+            </div>
+            <div class="pstat">
+              <div class="pstat-val" id="cfMaxRating">—</div>
+              <div class="pstat-label">Max Rating</div>
+            </div>
+            <div class="pstat">
+              <div class="pstat-val" id="cfContributions">—</div>
+              <div class="pstat-label">Contribution</div>
+            </div>
+            <div class="pstat">
+              <div class="pstat-val" id="cfFriends">—</div>
+              <div class="pstat-label">Friends</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rating-history-card card">
+          <h3>📈 Rating History</h3>
+          <div class="chart-container">
+            <canvas id="ratingChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div id="cfError" class="error-msg hidden">User not found. Check the handle and try again.</div>
+    </div>
+
+    <!-- LEETCODE PAGE -->
+    <div class="page" id="page-leetcode">
+      <div class="page-header">
+        <div>
+          <h1>🧩 LeetCode Profile</h1>
+          <p class="subtitle">Track your problem-solving progress</p>
+        </div>
+      </div>
+
+      <div class="profile-search card">
+        <div class="search-row">
+          <input type="text" id="lcHandle" placeholder="Enter LeetCode username" class="search-input" />
+          <button class="btn-primary" id="fetchLC">Fetch Profile</button>
+        </div>
+      </div>
+
+      <div id="lcProfile" class="hidden">
+        <div class="lc-grid">
+          <div class="card lc-stat-card">
+            <div class="lc-circle easy">
+              <div class="lc-circle-val" id="lcEasy">—</div>
+              <div class="lc-circle-label">Easy</div>
+            </div>
+          </div>
+          <div class="card lc-stat-card">
+            <div class="lc-circle medium">
+              <div class="lc-circle-val" id="lcMedium">—</div>
+              <div class="lc-circle-label">Medium</div>
+            </div>
+          </div>
+          <div class="card lc-stat-card">
+            <div class="lc-circle hard">
+              <div class="lc-circle-val" id="lcHard">—</div>
+              <div class="lc-circle-label">Hard</div>
+            </div>
+          </div>
+          <div class="card lc-stat-card">
+            <div class="lc-circle total">
+              <div class="lc-circle-val" id="lcTotal">—</div>
+              <div class="lc-circle-label">Total Solved</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🏅 Contest Performance</h3>
+          <div class="lc-contest-info">
+            <div class="pstat">
+              <div class="pstat-val" id="lcContestRating">—</div>
+              <div class="pstat-label">Contest Rating</div>
+            </div>
+            <div class="pstat">
+              <div class="pstat-val" id="lcGlobalRank">—</div>
+              <div class="pstat-label">Global Rank</div>
+            </div>
+            <div class="pstat">
+              <div class="pstat-val" id="lcContestsAttended">—</div>
+              <div class="pstat-label">Contests Attended</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="lcError" class="error-msg hidden">User not found or API unavailable. Try again.</div>
+    </div>
+
+    <!-- DAILY PLANNER PAGE -->
+    <div class="page" id="page-planner">
+      <div class="page-header">
+        <div>
+          <h1>📋 Daily Planner</h1>
+          <p class="subtitle" id="plannerDate">Loading date...</p>
+        </div>
+        <button class="btn-primary" id="clearCompleted">Clear Completed</button>
+      </div>
+
+      <div class="planner-layout">
+        <div class="card planner-add">
+          <h3>Add a Goal</h3>
+          <div class="add-task-row">
+            <input type="text" id="taskInput" placeholder="e.g. Solve 3 DP problems" class="search-input" />
+            <select id="taskCategory" class="search-input select-input">
+              <option value="cf">Codeforces</option>
+              <option value="lc">LeetCode</option>
+              <option value="atcoder">AtCoder</option>
+              <option value="revision">Revision</option>
+              <option value="contest">Contest</option>
+              <option value="other">Other</option>
+            </select>
+            <button class="btn-primary" id="addTask">Add</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="planner-header-row">
+            <h3>Today's Goals</h3>
+            <div class="progress-text" id="progressText">0 / 0 completed</div>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <div id="taskList" class="task-list">
+            <div class="empty-state">No goals yet. Add one above! 🚀</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKMARKS PAGE -->
+    <div class="page" id="page-bookmarks">
+      <div class="page-header">
+        <div>
+          <h1>⭐ Bookmarked Contests</h1>
+          <p class="subtitle">Contests you're planning to attend</p>
+        </div>
+      </div>
+
+      <div id="bookmarksList">
+        <div class="empty-state card">
+          <div class="empty-icon">⭐</div>
+          <p>No bookmarks yet. Star contests from the Contests page!</p>
+          <a href="#" class="btn-primary" data-page="contests">Browse Contests</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTES PAGE -->
+    <div class="page" id="page-notes">
+      <div class="page-header">
+        <div>
+          <h1>📝 Notes</h1>
+          <p class="subtitle">Your personal CP notebook</p>
+        </div>
+        <button class="btn-primary" id="newNote">+ New Note</button>
+      </div>
+
+      <div class="notes-layout">
+        <div class="notes-list card" id="notesList">
+          <div class="empty-state">No notes yet. Create one! 📝</div>
+        </div>
+        <div class="note-editor card" id="noteEditor">
+          <div class="editor-placeholder">Select a note or create a new one</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAILY CHALLENGE PAGE -->
+    <div class="page" id="page-challenge">
+      <div class="page-header">
+        <div>
+          <h1>🎯 Daily Challenge</h1>
+          <p class="subtitle">One problem a day keeps the rust away</p>
+        </div>
+        <button class="btn-primary" id="newChallenge">🔀 New Problem</button>
+      </div>
+
+      <div class="challenge-layout">
+        <div class="card challenge-main" id="challengeCard">
+          <div class="loading-pulse">Loading today's challenge...</div>
+        </div>
+
+        <div class="card challenge-history">
+          <h3>📚 Problem Bank</h3>
+          <div class="difficulty-filters">
+            <button class="filter-btn active" data-diff="all">All</button>
+            <button class="filter-btn easy-btn" data-diff="Easy">Easy</button>
+            <button class="filter-btn medium-btn" data-diff="Medium">Medium</button>
+            <button class="filter-btn hard-btn" data-diff="Hard">Hard</button>
+          </div>
+          <div id="problemBank" class="problem-bank">
+            <!-- populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Overlay for mobile sidebar -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
