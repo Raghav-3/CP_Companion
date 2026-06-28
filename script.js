@@ -24,84 +24,138 @@ function todayKey() {
   return new Date().toISOString().split('T')[0];
 }
 
-// ===== PROBLEM BANK =====
-const PROBLEMS = [
-  { id: 1, name: "Two Sum", difficulty: "Easy", topic: "Array", url: "https://leetcode.com/problems/two-sum/", platform: "LeetCode", desc: "Given an array of integers and a target, return indices of the two numbers that add up to the target." },
-  { id: 2, name: "Best Time to Buy and Sell Stock", difficulty: "Easy", topic: "Array", url: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/", platform: "LeetCode", desc: "Find the maximum profit you can achieve by buying and selling a stock on different days." },
-  { id: 3, name: "Climbing Stairs", difficulty: "Easy", topic: "DP", url: "https://leetcode.com/problems/climbing-stairs/", platform: "LeetCode", desc: "You are climbing a staircase. It takes n steps to reach the top. Each time you can climb 1 or 2 steps." },
-  { id: 4, name: "Maximum Subarray", difficulty: "Medium", topic: "DP", url: "https://leetcode.com/problems/maximum-subarray/", platform: "LeetCode", desc: "Find the contiguous subarray with the largest sum (Kadane's Algorithm)." },
-  { id: 5, name: "Longest Palindromic Substring", difficulty: "Medium", topic: "DP", url: "https://leetcode.com/problems/longest-palindromic-substring/", platform: "LeetCode", desc: "Given a string, return the longest palindromic substring." },
-  { id: 6, name: "Container With Most Water", difficulty: "Medium", topic: "Two Pointers", url: "https://leetcode.com/problems/container-with-most-water/", platform: "LeetCode", desc: "Find two lines that together with x-axis forms a container that contains the most water." },
-  { id: 7, name: "Merge k Sorted Lists", difficulty: "Hard", topic: "Linked List", url: "https://leetcode.com/problems/merge-k-sorted-lists/", platform: "LeetCode", desc: "Merge k sorted linked lists and return it as one sorted list." },
-  { id: 8, name: "Trapping Rain Water", difficulty: "Hard", topic: "Two Pointers", url: "https://leetcode.com/problems/trapping-rain-water/", platform: "LeetCode", desc: "Given n non-negative integers representing an elevation map, compute how much water it can trap after raining." },
-  { id: 9, name: "Valid Parentheses", difficulty: "Easy", topic: "Stack", url: "https://leetcode.com/problems/valid-parentheses/", platform: "LeetCode", desc: "Given a string containing just '(', ')', '{', '}', '[', ']', determine if the input string is valid." },
-  { id: 10, name: "Coin Change", difficulty: "Medium", topic: "DP", url: "https://leetcode.com/problems/coin-change/", platform: "LeetCode", desc: "Given coins of certain denominations, find the fewest number of coins needed to make up the amount." },
-  { id: 11, name: "Word Break", difficulty: "Medium", topic: "DP", url: "https://leetcode.com/problems/word-break/", platform: "LeetCode", desc: "Given a string and a dictionary, determine if the string can be segmented into valid words." },
-  { id: 12, name: "Number of Islands", difficulty: "Medium", topic: "DFS/BFS", url: "https://leetcode.com/problems/number-of-islands/", platform: "LeetCode", desc: "Given a 2D grid map of 1s (land) and 0s (water), count the number of islands." },
-  { id: 13, name: "Find Median from Data Stream", difficulty: "Hard", topic: "Heap", url: "https://leetcode.com/problems/find-median-from-data-stream/", platform: "LeetCode", desc: "Design a data structure that supports adding integers from a data stream and finding the median." },
-  { id: 14, name: "Binary Tree Level Order Traversal", difficulty: "Medium", topic: "BFS", url: "https://leetcode.com/problems/binary-tree-level-order-traversal/", platform: "LeetCode", desc: "Given a binary tree, return the level order traversal of its nodes' values." },
-  { id: 15, name: "LRU Cache", difficulty: "Medium", topic: "Design", url: "https://leetcode.com/problems/lru-cache/", platform: "LeetCode", desc: "Design a data structure that follows the Least Recently Used (LRU) cache constraint." },
-  { id: 16, name: "Reverse Linked List", difficulty: "Easy", topic: "Linked List", url: "https://leetcode.com/problems/reverse-linked-list/", platform: "LeetCode", desc: "Reverse a singly linked list." },
-  { id: 17, name: "Product of Array Except Self", difficulty: "Medium", topic: "Array", url: "https://leetcode.com/problems/product-of-array-except-self/", platform: "LeetCode", desc: "Return an array such that each element is the product of all elements except itself." },
-  { id: 18, name: "Edit Distance", difficulty: "Hard", topic: "DP", url: "https://leetcode.com/problems/edit-distance/", platform: "LeetCode", desc: "Given two words, find the minimum number of operations to convert one to the other." },
-  { id: 19, name: "Search in Rotated Sorted Array", difficulty: "Medium", topic: "Binary Search", url: "https://leetcode.com/problems/search-in-rotated-sorted-array/", platform: "LeetCode", desc: "Search for a target in a rotated sorted array in O(log n) time." },
-  { id: 20, name: "Minimum Window Substring", difficulty: "Hard", topic: "Sliding Window", url: "https://leetcode.com/problems/minimum-window-substring/", platform: "LeetCode", desc: "Find the minimum window substring that contains all characters of pattern T." },
-];
+// ===== PROBLEM BANK (fetched from LeetCode via public API) =====
+// PROBLEMS is populated dynamically; starts empty
+let PROBLEMS = [];
 
-// ===== MOCK CONTEST DATA =====
-function generateContests() {
-  const now = Date.now();
-  const hour = 3600000;
-  const day = 86400000;
-  return [
-    {
-      id: 'cf1', name: 'Codeforces Round 1030 (Div. 2)', platform: 'codeforces', platformLabel: 'Codeforces',
-      startTime: now + 2 * day + 5 * hour, duration: '2h', url: 'https://codeforces.com/contests',
-      division: 'Div. 2',
-    },
-    {
-      id: 'cf2', name: 'Codeforces Round 1031 (Div. 1)', platform: 'codeforces', platformLabel: 'Codeforces',
-      startTime: now + 4 * day + 3 * hour, duration: '2h 30m', url: 'https://codeforces.com/contests',
-      division: 'Div. 1',
-    },
-    {
-      id: 'cf3', name: 'Codeforces Round 1032 (Div. 3)', platform: 'codeforces', platformLabel: 'Codeforces',
-      startTime: now + 1 * day + 8 * hour, duration: '2h', url: 'https://codeforces.com/contests',
-      division: 'Div. 3',
-    },
-    {
-      id: 'lc1', name: 'LeetCode Weekly Contest 456', platform: 'leetcode', platformLabel: 'LeetCode',
-      startTime: now + 3 * day + 1 * hour, duration: '1h 30m', url: 'https://leetcode.com/contest/',
-      division: '',
-    },
-    {
-      id: 'lc2', name: 'LeetCode Biweekly Contest 152', platform: 'leetcode', platformLabel: 'LeetCode',
-      startTime: now + 10 * day + 2 * hour, duration: '1h 30m', url: 'https://leetcode.com/contest/',
-      division: '',
-    },
-    {
-      id: 'ac1', name: 'AtCoder Beginner Contest 392', platform: 'atcoder', platformLabel: 'AtCoder',
-      startTime: now + 5 * day + 6 * hour, duration: '1h 40m', url: 'https://atcoder.jp/contests/',
-      division: 'ABC',
-    },
-    {
-      id: 'ac2', name: 'AtCoder Regular Contest 190', platform: 'atcoder', platformLabel: 'AtCoder',
-      startTime: now + 7 * day + 4 * hour, duration: '2h', url: 'https://atcoder.jp/contests/',
-      division: 'ARC',
-    },
-    {
-      id: 'cc1', name: 'CodeChef Starters 168', platform: 'codechef', platformLabel: 'CodeChef',
-      startTime: now + 6 * day + 2 * hour, duration: '3h', url: 'https://www.codechef.com/contests',
-      division: 'Div. 2',
-    },
-    {
-      id: 'cc2', name: 'CodeChef Long Challenge', platform: 'codechef', platformLabel: 'CodeChef',
-      startTime: now + 14 * day, duration: '10 days', url: 'https://www.codechef.com/contests',
-      division: '',
-    },
-  ].sort((a, b) => a.startTime - b.startTime);
+// Normalize difficulty — alfa-leetcode-api returns "Easy"/"Medium"/"Hard" strings directly
+function normalizeDifficulty(d) {
+  if (typeof d === 'string') {
+    const s = d.trim();
+    if (s === 'Easy' || s === 'Medium' || s === 'Hard') return s;
+    // Sometimes returns uppercase: "EASY" etc
+    const cap = s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+    if (cap === 'Easy' || cap === 'Medium' || cap === 'Hard') return cap;
+  }
+  // Fallback for numeric (legacy)
+  return d === 1 ? 'Easy' : d === 2 ? 'Medium' : 'Hard';
 }
 
+// Fetch random LeetCode problems using alfa-leetcode-api (public CORS-friendly proxy)
+async function fetchLCProblems(count = 60) {
+  try {
+    const total = 3300;
+    const skip = Math.floor(Math.random() * (total - count));
+    const res = await fetch(`https://alfa-leetcode-api.onrender.com/problems?limit=${count}&skip=${skip}`);
+    if (!res.ok) throw new Error('API error ' + res.status);
+    const data = await res.json();
+    // API wraps in { problemsetQuestionList: [...] }
+    const raw = data.problemsetQuestionList || data.problems || data || [];
+    const problems = raw.map((p, i) => ({
+      id: p.frontendQuestionId || p.questionFrontendId || (skip + i + 1),
+      name: p.title || p.questionTitle || 'Untitled',
+      difficulty: normalizeDifficulty(p.difficulty),
+      topic: (p.topicTags?.[0]?.name) || 'General',
+      url: `https://leetcode.com/problems/${p.titleSlug || p.questionTitleSlug}/`,
+      platform: 'LeetCode',
+      desc: p.content
+        ? p.content.replace(/<[^>]+>/g, '').replace(/&[a-z]+;/gi, ' ').trim().slice(0, 160)
+        : (p.title || ''),
+    })).filter(p => p.name && p.name !== 'Untitled');
+    return problems;
+  } catch (e) {
+    console.warn('LeetCode problems API failed:', e);
+    return [];
+  }
+}
+
+async function ensureProblems() {
+  if (PROBLEMS.length > 0) return;
+  PROBLEMS = await fetchLCProblems(50);
+}
+
+// ===== CONTEST DATA (Codeforces + LeetCode real APIs) =====
+
+function formatDuration(seconds) {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  if (h === 0) return `${m}m`;
+  if (m === 0) return `${h}h`;
+  return `${h}h ${m}m`;
+}
+
+function parseCFDivision(name) {
+  const match = name.match(/Div\.\s*\d+/i);
+  return match ? match[0] : '';
+}
+
+// Codeforces upcoming contests
+async function fetchCFContests() {
+  try {
+    const res = await fetch('https://codeforces.com/api/contest.list?gym=false');
+    const data = await res.json();
+    if (data.status !== 'OK') return [];
+    return data.result
+      .filter(c => c.phase === 'BEFORE')
+      .slice(0, 15)
+      .map(c => ({
+        id: 'cf' + c.id,
+        name: c.name,
+        platform: 'codeforces',
+        platformLabel: 'Codeforces',
+        startTime: c.startTimeSeconds * 1000,
+        duration: formatDuration(c.durationSeconds),
+        url: `https://codeforces.com/contest/${c.id}`,
+        division: parseCFDivision(c.name),
+      }));
+  } catch (e) {
+    console.warn('CF API failed:', e);
+    return [];
+  }
+}
+
+// LeetCode upcoming contests via alfa-leetcode-api
+async function fetchLCContests() {
+  try {
+    const res = await fetch('https://alfa-leetcode-api.onrender.com/contests/upcoming');
+    if (!res.ok) throw new Error('status ' + res.status);
+    const data = await res.json();
+    // Response: { contests: [ { title, titleSlug, startTime, duration, ... } ] }
+    const list = data.contests || data.upcomingContests || data || [];
+    return list.map((c, i) => {
+      const startMs = (c.startTime || c.startTimeSeconds)
+        ? (c.startTime > 1e10 ? c.startTime : c.startTime * 1000)
+        : Date.now() + (i + 1) * 86400000;
+      const durSec = c.duration || c.durationSeconds || 5400;
+      return {
+        id: 'lc_' + (c.titleSlug || i),
+        name: c.title,
+        platform: 'leetcode',
+        platformLabel: 'LeetCode',
+        startTime: startMs,
+        duration: formatDuration(durSec),
+        url: `https://leetcode.com/contest/${c.titleSlug || ''}`,
+        division: '',
+      };
+    }).filter(c => c.name);
+  } catch (e) {
+    console.warn('LeetCode contests API failed:', e);
+    return [];
+  }
+}
+
+async function fetchContests() {
+  const grid = document.getElementById('contestsGrid');
+  if (grid) grid.innerHTML = '<div class="loading-pulse">Fetching live contests...</div>';
+
+  const [cfContests, lcContests] = await Promise.all([
+    fetchCFContests(),
+    fetchLCContests(),
+  ]);
+
+  const all = [...cfContests, ...lcContests].sort((a, b) => a.startTime - b.startTime);
+  return all;
+}
 // ===== NAVIGATION =====
 function initNav() {
   document.querySelectorAll('.nav-item, .card-link, [data-page]').forEach(el => {
@@ -124,7 +178,6 @@ function navigateTo(page) {
 
   closeSidebar();
 
-  // Page-specific init
   if (page === 'dashboard') renderDashboard();
   if (page === 'contests') renderContests();
   if (page === 'planner') renderPlanner();
@@ -178,7 +231,6 @@ function setTheme(theme) {
     if (mobileBtn) mobileBtn.textContent = '🌙';
   }
 
-  // Redraw chart if visible
   if (STATE.ratingChartInstance) {
     STATE.ratingChartInstance.options.scales.y.grid.color = theme === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
     STATE.ratingChartInstance.options.scales.x.grid.color = theme === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
@@ -215,10 +267,14 @@ function showToast(msg) {
 
 // ===== COUNTDOWN =====
 function startCountdown(startTime, el) {
+  let iv;
   function update() {
     const diff = startTime - Date.now();
     if (diff <= 0) {
       el.innerHTML = '<div class="cd-unit"><span class="cd-val">🔴</span><span class="cd-label">Live</span></div>';
+      // Clear this interval now that the contest has started
+      clearInterval(iv);
+      STATE.countdownIntervals = STATE.countdownIntervals.filter(i => i !== iv);
       return;
     }
     const d = Math.floor(diff / 86400000);
@@ -234,7 +290,7 @@ function startCountdown(startTime, el) {
     `;
   }
   update();
-  const iv = setInterval(update, 1000);
+  iv = setInterval(update, 1000);
   STATE.countdownIntervals.push(iv);
   return iv;
 }
@@ -280,13 +336,15 @@ function contestCardHTML(c) {
 }
 
 // ===== CONTESTS PAGE =====
-function renderContests() {
+async function renderContests() {
   clearCountdowns();
+  const grid = document.getElementById('contestsGrid');
+
   if (!STATE.contests.length) {
-    STATE.contests = generateContests();
+    grid.innerHTML = '<div class="loading-pulse">Fetching live contests...</div>';
+    STATE.contests = await fetchContests();
   }
 
-  const grid = document.getElementById('contestsGrid');
   let list = STATE.activeFilter === 'all' ? STATE.contests : STATE.contests.filter(c => c.platform === STATE.activeFilter);
 
   if (!list.length) {
@@ -320,8 +378,9 @@ function renderContests() {
 }
 
 function initContestsPage() {
-  document.getElementById('refreshContests').addEventListener('click', () => {
-    STATE.contests = generateContests();
+  document.getElementById('refreshContests').addEventListener('click', async () => {
+    STATE.contests = [];
+    STATE.contests = await fetchContests();
     renderContests();
     showToast('Contests refreshed!');
   });
@@ -780,8 +839,10 @@ function renderNotes() {
 
 // ===== DAILY CHALLENGE =====
 function initChallengePage() {
-  document.getElementById('newChallenge').addEventListener('click', () => {
-    pickRandomChallenge();
+  document.getElementById('newChallenge').addEventListener('click', async () => {
+    // Clear today's saved challenge so a fresh one is picked
+    localStorage.removeItem('cp_challenge_' + todayKey());
+    await pickRandomChallenge();
   });
 
   document.querySelectorAll('.filter-btn[data-diff]').forEach(btn => {
@@ -794,8 +855,10 @@ function initChallengePage() {
   });
 }
 
-function pickRandomChallenge(problem) {
+async function pickRandomChallenge(problem) {
+  await ensureProblems();
   const pool = problem ? [problem] : PROBLEMS;
+  if (!pool.length) return;
   const p = pool[Math.floor(Math.random() * pool.length)];
   STATE.currentChallenge = p;
   renderChallengeCard(p);
@@ -803,13 +866,14 @@ function pickRandomChallenge(problem) {
   localStorage.setItem('cp_challenge_' + todayKey(), JSON.stringify(p));
 }
 
-function renderChallenge() {
+async function renderChallenge() {
+  await ensureProblems();
   const saved = localStorage.getItem('cp_challenge_' + todayKey());
   if (saved) {
     STATE.currentChallenge = JSON.parse(saved);
     renderChallengeCard(STATE.currentChallenge);
   } else {
-    pickRandomChallenge();
+    await pickRandomChallenge();
   }
   renderProblemBank();
 }
@@ -832,6 +896,10 @@ function renderChallengeCard(p) {
 
 function renderProblemBank() {
   const bank = document.getElementById('problemBank');
+  if (!PROBLEMS.length) {
+    bank.innerHTML = '<div class="loading-pulse">Loading problems...</div>';
+    return;
+  }
   const list = STATE.activeDiff === 'all' ? PROBLEMS : PROBLEMS.filter(p => p.difficulty === STATE.activeDiff);
   bank.innerHTML = list.map(p => `
     <div class="problem-item ${STATE.currentChallenge?.id === p.id ? 'active-problem' : ''}" data-pid="${p.id}">
@@ -843,8 +911,8 @@ function renderProblemBank() {
 
   bank.querySelectorAll('.problem-item').forEach(el => {
     el.addEventListener('click', () => {
-      const pid = parseInt(el.dataset.pid);
-      const prob = PROBLEMS.find(p => p.id === pid);
+      const pid = el.dataset.pid;
+      const prob = PROBLEMS.find(p => String(p.id) === String(pid));
       if (prob) {
         STATE.currentChallenge = prob;
         renderChallengeCard(prob);
@@ -856,13 +924,15 @@ function renderProblemBank() {
 }
 
 // ===== DASHBOARD =====
-function renderDashboard() {
-  if (!STATE.contests.length) STATE.contests = generateContests();
+async function renderDashboard() {
+  if (!STATE.contests.length) {
+    STATE.contests = await fetchContests();
+  }
 
   updateDashboardStats();
   renderDashNextContest();
   renderDashGoals();
-  renderDashChallenge();
+  await renderDashChallenge();
   updateDashboardQuickStats();
 }
 
@@ -913,11 +983,18 @@ function renderDashGoals() {
   `;
 }
 
-function renderDashChallenge() {
+async function renderDashChallenge() {
   const el = document.getElementById('dashChallenge');
+  el.innerHTML = '<div class="loading-pulse">Loading challenge...</div>';
+
+  await ensureProblems();
   const saved = localStorage.getItem('cp_challenge_' + todayKey());
-  const p = saved ? JSON.parse(saved) : PROBLEMS[Math.floor(Math.random() * PROBLEMS.length)];
-  if (!saved) localStorage.setItem('cp_challenge_' + todayKey(), JSON.stringify(p));
+  let p = saved ? JSON.parse(saved) : null;
+  if (!p && PROBLEMS.length) {
+    p = PROBLEMS[Math.floor(Math.random() * PROBLEMS.length)];
+    localStorage.setItem('cp_challenge_' + todayKey(), JSON.stringify(p));
+  }
+  if (!p) { el.innerHTML = '<div class="loading-pulse">No challenge available.</div>'; return; }
 
   el.innerHTML = `
     <div style="display:flex;flex-direction:column;gap:12px;">
@@ -925,7 +1002,7 @@ function renderDashChallenge() {
         <div style="font-weight:700;font-size:15px;">${p.name}</div>
         <div class="diff-badge diff-${p.difficulty}">${p.difficulty}</div>
       </div>
-      <div style="font-size:12px;color:var(--text-secondary);">${p.desc.slice(0, 100)}...</div>
+      <div style="font-size:12px;color:var(--text-secondary);">${(p.desc || '').slice(0, 100)}...</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;">
         <a href="${p.url}" target="_blank" class="btn-register" style="flex:1;min-width:100px;text-decoration:none;text-align:center;">Open →</a>
       </div>
@@ -984,10 +1061,7 @@ function updateDashboardQuickStats() {
 }
 
 // ===== INIT =====
-document.addEventListener('DOMContentLoaded', () => {
-  // Load contests
-  STATE.contests = generateContests();
-
+document.addEventListener('DOMContentLoaded', async () => {
   // Init all features
   initNav();
   initTheme();
@@ -1006,6 +1080,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const greetEl = document.getElementById('greeting');
   if (greetEl) greetEl.textContent = `${greeting}, Coder 👋`;
 
-  // Initial render
+  // Fetch real contests then render dashboard
+  STATE.contests = await fetchContests();
   renderDashboard();
 });
