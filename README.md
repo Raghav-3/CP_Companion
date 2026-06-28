@@ -4,7 +4,7 @@ CP Companion is a web application built to help competitive programmers keep tra
 
 ## Live Demo
 
-Add GitHub Pages link here after deployment.
+(https://raghav-3.github.io/CP_Companion/)
 
 ## Features
 
